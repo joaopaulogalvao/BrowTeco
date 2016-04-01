@@ -42,3 +42,41 @@ extension ConfigureDescriptionsWithDelegate {
     
 }
 
+class MessageCenterView  {
+    
+    private var dataSource : ConfigureDescriptionsDataSource?
+    private var delegate : ConfigureDescriptionsWithDelegate?
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
