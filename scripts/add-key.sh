@@ -21,4 +21,4 @@ security import ./scripts/certs/dist.p12.enc -k ~/Library/Keychains/ios-build.ke
 
 # Put the provisioning profile in place
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-cp "./scripts/profile/$PROFILE_NAME.mobileprovision" ~/Library/MobileDevice/Provisioning\ Profiles/
+cp "./scripts/profile/$PROFILE_NAME.mobileprovision.enc" ~/Library/MobileDevice/Provisioning\ Profiles/
