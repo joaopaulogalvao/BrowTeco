@@ -51,6 +51,7 @@ class MessageCenterView  {
         self.dataSource = dataSource
         self.delegate = delegate
         
+        
     }
     
     
