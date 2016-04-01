@@ -47,6 +47,12 @@ class MessageCenterView  {
     private var dataSource : ConfigureDescriptionsDataSource?
     private var delegate : ConfigureDescriptionsWithDelegate?
     
+    func configure(withDataSource dataSource: ConfigureDescriptionsDataSource, delegate: ConfigureDescriptionsWithDelegate?) {
+        self.dataSource = dataSource
+        self.delegate = delegate
+        
+    }
+    
     
     
 }

@@ -1,0 +1,25 @@
+language: objective-c
+osx_image: xcode7.3
+xcode_workspace: browteco.xcworkspace
+xcode_scheme: browteco
+xcode_sdk: iphonesimulator9.3
+script:
+- xctool -workspace browteco.xcworkspace -scheme browteco -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool test -workspace browteco.xcworkspace -scheme browtecoTests -sdk iphonesimulator
+  ONLY_ACTIVE_ARCH=NO
+env:
+  global:
+  - APP_NAME="browteco"
+  - 'DEVELOPER_NAME="iPhone Distribution: Joao Paulo Alves (F4V48FFS39)"'
+  - PROFILE_NAME="iOS_Team_Provisioning_Profile_"
+secure: dPB0BN/1vFPus6q5DLGI8Tf9CH50qm7JhbvaMxEqGXtvH6+eghqGc4rIFsuXMPkkKryRe7oNqjWkNx3a+DscoH4elnTtFCJ2Psa3O6ZpxLBPO7zC4s/F+WWRjf/5yx8KdyKIf1LuAjNY3yUH0PsiqfaUR2fC6vXzrtBuNRWpqQTlc2fjINQSX5NN/xu1kwxcZbU7pcWpXwLjfTnPfinufYuwLLuOb9vTzitRbBToGeuRR3+RQAzKa6ehePRhg9AP/EQ/bO9voMxnmJyggHyuJO3iUBxik3PNplVTMLjcx9lyd1th6NW4gp7+OQo7F5Lqo2BOpPbiQNDCZkvjr2HGjn9Yz9wwBL6AZM7yShhtfev20pDHsXvnRLV8+8J8Aes94CDOXS4nXyK8Uqko8TAc5wTBDB7A446hoYB161tR3BydWvaXdO/Dd03f5gsjBahEYC+qYJciEZjdsuVisA3ERql+yX8tK1VFYxdw5wkrfdPkpNiA+JraPOyvkfKSYD4li54mEcDnP9CoW78DNCT+Xq3aaUu02N98teBTPWsILMFb6Eak7NzB7MvKCViECG1pVTvaaIGeqmqkpSPAvMSKeQdKYE/ES9tptnKH4blnDcqwdx3QUsfw+CixOLaCKA4wo3GpZ7x6Gms6Y5NC0YcOJWX5zXbLO4GuNbzq1DPliUI=
+before_script:
+- ./scripts/add-key.sh
+- ./scripts/update-bundle.sh
+script:
+- xctool -workspace browteco.xcworkspace -scheme browteco -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+after_success:
+- ./scripts/sign-and-upload.sh
+after_script:
+- ./scripts/remove-key.sh
+
