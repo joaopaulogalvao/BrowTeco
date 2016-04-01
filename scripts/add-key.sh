@@ -19,7 +19,10 @@ security import ./scripts/certs/AppleWWDRCA.cer -k ~/Library/Keychains/ios-build
 security import ./scripts/certs/dist.cer.enc -k ~/Library/Keychains/ios-build.keychain -T /usr/bin/codesign
 security import ./scripts/certs/dist.p12.enc -k ~/Library/Keychains/ios-build.keychain -P $KEY_PASSWORD -T /usr/bin/codesign
 
+security import ./scripts/certs/ios_development.cer.enc -k ~/Library/Keychains/ios-build.keychain -T /usr/bin/codesign
+security import ./scripts/certs/dev.p12.enc -k ~/Library/Keychains/ios-build.keychain -P $KEY_PASSWORD -T /usr/bin/codesign
 
 # Put the provisioning profile in place
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp "./scripts/profile/iOS_Team_Provisioning_Profile_.mobileprovision.enc" ~/Library/MobileDevice/Provisioning\ Profiles/
+cp "./scripts/profile/distbrowteco.mobileprovision.enc" ~/Library/MobileDevice/Provisioning\ Profiles/
