@@ -1,0 +1,30 @@
+language: objective-c
+script:
+- xcodebuild -workspace browteco.xcworkspace -scheme browteco -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool -workspace browteco.xcworkspace -scheme browteco -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool test -workspace browteco.xcworkspace -scheme browtecoTests -sdk iphonesimulator
+  ONLY_ACTIVE_ARCH=NO
+env:
+  global:
+  - APP_NAME="browteco"
+  - 'DEVELOPER_NAME="iPhone Distribution: Joao Paulo Alves (F4V48FFS39)"'
+  - PROFILE_NAME="distbrowteco"
+  - secure: Eq7+rYDPcc0pFaJkpkeacri3UDkGivBLP3dmN3kWELORaNW2RW5Qk9cHRsFNweMZq5jQuBABlJQgRxJFNL0drJ5W5feysgm4zeiR+FnX6IPscQBZv5CK74mZCdt9ZNLOndnI2opwtkFt9mX/9x/vuYfPvKRQ2JKW+cp66kHUGSpKp7BE2BvsTUFWfcUq3OWg1rcjhleqeC6BjSPqIRUmnrUvnvRAAbSkNe4afum3vGmfnq+nzk8lsaex7KaxKzZIKwKsFUKiEk1lYAtSmkyNq36e6fSER5t6TCe3JmQcWmPNO6RsiR4v+yiVnsYh7XVCKU8gMl0rR9108lCygujAqnrlIub9s7eS8lvCxQQThcqF/96l8/MaJqEH23NtK7ztUVcWjL05fc0bm7K2sAcybtUWJzHNw6yRLjUtObxZCPvC10LnWZlO5Td099++v1ZLD/PQimNXiVtmkkxG3G7U4quzZsLVSplGNGtsbIbazfaffHfwxdVrm7m7Mog3KoZHha41TtLvCIyV6d+24AvoVGdaq41sTxwOgD4sMQWpS0UJJ52nlpoWmxlCeJ92D7c6PzXviPgbIK69pLrE2synYEsybnZT2e/Ts9EB4ptsSuIl0QmRDOUxYfijTS6+e2MWdbCfyf9WGbieDImGzXuvoPFBhuH+kPPUKdg6eWwIvpU=
+  - secure: PID3+IobhN01Juw8C4CYlE9/qvcQd/gOqauZ9F082nuxXvHjQsIjOqWi4HPJr6Q100pg0Spg+qTXXNwi3MP/uh1HP+3NgFyFF8QQ6tTJubyhcYk55rwID3PpIkzpNHGL4d/cONzp8K4GdKLbuUXgSmKDnjC7yiJgCDhBAJjMx8wj39PV8amPFp4TzX5LGWCofA0hi73EtFv8aItDwEZ+fnTgPqSXEUeOizpR6R5INDQsfMjz0JIaHvXKLjeRauIOVLG6TEGpWOTESF07nlv0JTwrMxOCIJg/NtVIl6mGFmwDL8aHcRSGDOdpoGbzMC5iCeqy0AcYggpQTNHnsLmhvxa8zceim+qeJbXXnnHEJbvu9aIVuYozY+9Nzb+nt8OizppdvU97dLv1vZc5q/6jrNo20VXJ1l/CMTwSld8+6txEfOK634agMnXSFemllBay9y8R+WIDEn3AQzuUjDnIcfioIt1UKGvAUFOfekQEEkfgmeT0lrTibIxW49jRqunFpXAsOQLouTprj3ALXZxFwnUear9FR0I1K7QIDZOomDKfzT9l4TeT2bbVFzu+P91pxqn9OkSvGHb5fOzKZn14T6sHIGGI7LA70R1tynVSwtJqd6K5Bqd/QNfUyVr42qushgHkVaqIv+ttR7MoTAhm9szSBeA69bD4kS5ofM25V2Q=
+  - secure: ByNSZ5SiFozlrvMriIjperbHB3FxMiA7QMgIu/wYcp2ToA2qbOQPHCNSIqIAq3XIQ2cTLBDPN6OVDfzfPrnx4ypVjVHq1Z9W54tgUS7FDRpw6mSrVPt8lyEDtsbnkjHp/oOa2OkquUSgqTbVjUH1PClHB8cWBRecTrI92il+LRkHKSlKyMWT+IaE9Tw9QERsJG5c1ho13QR9d+pRFuLr3lW+osBEnCF/ECaBPfL4LYLdelk1Rk5tKczJVtqa0Li5+VTpDviy+xELUBXIu9SrPX7eZfjarfg4u+rDB2VvGdO6U0vlk9GqgrxnY8vDPMop08QYK6dWAmL15/jxpVCAoV0cftU0Eu5vnz8pmOUiNIbWga1DciQUZZ7S8ZeP2W9lbRGCM4DJhGySIfcGvEEZpN5OX6KAy4j77/KgDFq+lewd1/VstJMXoQupKRYVkCGywn7h4Zlr7X8kpolNFd+PMJuEAM/kLdtKaLfv1BkcrcPNAe6HOS7xaz/twVrwNeitq8CqH0F2f8XBti8Q+mAoFNq1HvSji1EmSjMgSLYgHJ5fC0BgVj2tg3VJFSSTZMT1E5s/0nKWoCEp7oACo++6DqVNmWdaGeY9hYqu0+j9hK/KUTt8FfMmlxjpLX0BgxGvEjnHu+Es9Q/iZQhDtspjaY6vETUfINmVmPdwaTZntME=
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/distbrowteco.mobileprovision.enc -d -a -out scripts/profile/distbrowteco.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- chmod a+x ./scripts/add-key.sh
+- ./scripts/add-key.sh
+- chmod a+x ./scripts/update-bundle.sh
+- ./scripts/update-bundle.sh
+- chmod a+x ./scripts/remove-key.sh
+- ./scripts/remove-key.sh
+script:
+- xctool -workspace browteco.xcworkspace -scheme browteco -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+after_success:
+- ./scripts/sign-and-upload.sh
+after_script:
+- ./scripts/remove-key.sh
