@@ -1,0 +1,24 @@
+language: objective-c
+osx_image: xcode7.3
+script:
+- xctool -workspace browteco.xcworkspace -scheme browteco -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+env:
+  global:
+  - APP_NAME="browteco"
+  - 'DEVELOPER_NAME="iPhone Distribution: Joao Paulo Alves (F4V48FFS39)"'
+  - PROFILE_NAME="distbrowteco"
+secure: bhOILCvMmcFqyyxKzyb0tC55JexxL3eSQS8sEmCee8eKQ1UhrILNNT9MnogXEjXJwZ9I8lN1cRx3I7yFrFZeuMvSCX38f1VucwpRpPxHMFk0PzfwsMhhTd3DVXbm7QQoZ5PmMVxE6L5ez9D5tyHLiNCxmUIZ38lJbwh+Dmst3WaPyBCCB/T4KOFQDN/25c97FWH653YzAEw+Q/UMVYRf0xIvlvwDhRb9waZVUk4AwxAoRcllPnz2pf/7hhaUed8MDUy6qJfeNwrOnjr5Oavgzpy9rb5ty8ahCWc+2FwW88lfqBbxpQxSj9qrrAn7hZYKawWEg/IDUfV8Etibc78qS2enCUNOMAPW0NFEk84gwChUHj8p0YyCQ2dwu32VfT6lBAHs7QeXfBz2gQxQTYuXYuPktHlED5rq1RrHumfgwESHJoKL1Lje/fV5h5NKY3ktZcTHA6i2ggJmJqoUCFagbLp8kDw1Lu96JNXn9ygGVCIgl+j+QBsIMrT2VnjF+6+6AEQoQp6/dz5/b9HJ97Aj7aPOI6DCKQfxoFBw3YO3D+Hnc4Aij/Bhhu+lAET0xaf/+qca7uaoOCkwkZAYcWVMkuxo9HE/12lXa5WZHKpJwYzvn7dNmuSKSYVYJeLYbu1n8Ez36CNzfeJ+ajgCVZJT2HNVFBu0AXCzZtnLgMFEv5s=
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/distbrowteco.mobileprovision.enc -d -a -out scripts/profile/distbrowteco.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- chmod a+x ./scripts/add-key.sh
+- ./scripts/add-key.sh
+- chmod a+x ./scripts/update-bundle.sh
+- ./scripts/update-bundle.sh
+- chmod a+x ./scripts/remove-key.sh
+- ./scripts/remove-key.sh
+after_success:
+- ./scripts/sign-and-upload.sh
+after_script:
+- ./scripts/remove-key.sh

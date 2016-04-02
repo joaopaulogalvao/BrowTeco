@@ -20,6 +20,9 @@ DerivedData
 */*/Keys.m
 .DS_Store
 Keys.swift
+dist.cer
+*.p12
+*.mobileprovision
 
 # CocoaPods
 #
