@@ -7,7 +7,7 @@ env:
   global:
   - APP_NAME="browteco"
   - 'DEVELOPER_NAME="iPhone Distribution: Joao Paulo Alves (F4V48FFS39)"'
-  - PROFILE_NAME="distbrowteco.mobileprovision.enc"
+  - PROFILE_NAME="distbrowteco"
   - secure: ByNSZ5SiFozlrvMriIjperbHB3FxMiA7QMgIu/wYcp2ToA2qbOQPHCNSIqIAq3XIQ2cTLBDPN6OVDfzfPrnx4ypVjVHq1Z9W54tgUS7FDRpw6mSrVPt8lyEDtsbnkjHp/oOa2OkquUSgqTbVjUH1PClHB8cWBRecTrI92il+LRkHKSlKyMWT+IaE9Tw9QERsJG5c1ho13QR9d+pRFuLr3lW+osBEnCF/ECaBPfL4LYLdelk1Rk5tKczJVtqa0Li5+VTpDviy+xELUBXIu9SrPX7eZfjarfg4u+rDB2VvGdO6U0vlk9GqgrxnY8vDPMop08QYK6dWAmL15/jxpVCAoV0cftU0Eu5vnz8pmOUiNIbWga1DciQUZZ7S8ZeP2W9lbRGCM4DJhGySIfcGvEEZpN5OX6KAy4j77/KgDFq+lewd1/VstJMXoQupKRYVkCGywn7h4Zlr7X8kpolNFd+PMJuEAM/kLdtKaLfv1BkcrcPNAe6HOS7xaz/twVrwNeitq8CqH0F2f8XBti8Q+mAoFNq1HvSji1EmSjMgSLYgHJ5fC0BgVj2tg3VJFSSTZMT1E5s/0nKWoCEp7oACo++6DqVNmWdaGeY9hYqu0+j9hK/KUTt8FfMmlxjpLX0BgxGvEjnHu+Es9Q/iZQhDtspjaY6vETUfINmVmPdwaTZntME=
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/distbrowteco.mobileprovision.enc -d -a -out scripts/profile/distbrowteco.mobileprovision
