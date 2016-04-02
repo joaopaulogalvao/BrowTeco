@@ -22,6 +22,14 @@ security import ./scripts/certs/dist.p12.enc -k ~/Library/Keychains/ios-build.ke
 security import ./scripts/certs/ios_development.cer.enc -k ~/Library/Keychains/ios-build.keychain -T /usr/bin/codesign
 security import ./scripts/certs/dev.p12.enc -k ~/Library/Keychains/ios-build.keychain -P $KEY_PASSWORD -T /usr/bin/codesign
 
+echo "list keychains: "
+security list-keychains
+echo " ****** "
+
+echo "find indentities keychains: "
+security find-identity -p codesigning  ~/Library/Keychains/ios-build.keychain
+echo " ****** "
+
 # Put the provisioning profile in place
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp "./scripts/profile/iOS_Team_Provisioning_Profile_.mobileprovision.enc" ~/Library/MobileDevice/Provisioning\ Profiles/
