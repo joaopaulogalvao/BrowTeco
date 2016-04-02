@@ -20,7 +20,7 @@ DerivedData
 */*/Keys.m
 .DS_Store
 Keys.swift
-*.cer
+dist.cer
 *.p12
 *.mobileprovision
 
