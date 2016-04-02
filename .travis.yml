@@ -1,0 +1,25 @@
+language: objective-c
+osx_image: xcode7.3
+script:
+- xctool -workspace browteco.xcworkspace -scheme browteco -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+env:
+  global:
+  - APP_NAME="browteco"
+  - 'DEVELOPER_NAME="iPhone Distribution: Joao Paulo Alves (F4V48FFS39)"'
+  - PROFILE_NAME="distbrowteco"
+secure: IdAKQ6H9AH5XgnKjGgH4QjsDAZnm/FPDnYoeamzmp0n80nng3FapXpyCKTzgSQ7sC51WkmuKqTp1C1EQKkin2qrOv1hT1v/AbSVJZmg3Vo6eUPvbRLGroRsRiJYFr0qusxzOHa1sNCSgXJFVL050j3mbpEn6RTKnVMBvMWMRc+pXn9f8nozrXyDbGZa/uSDUlMtqOewhiNsD/3jQnYB8vKpremnWm9Fmwta8EFOcYw6gGirFvuNtVfJWk2eNsZ4FF9GgKnp7dHe36tf/H7H+sZNpPb6Sek1hscBew5rw1+tqNpuwMkNYyko9ou72D+TdWZAbVGS/wcRzhaNOx+M8wGCCqN3lElLyGeQUXhyPTSkkUsj0TRlH38ljeYoo9f/eHvsYTB8RldRJtAferIrsV45hnEctD7Sje39VB4mdwGaLiLIb4EXIyyQQteGGao+pD1mwdTpM0bQRgeqUsdqJtA1WjXMdyKnqdo7MDeNy9whYIVZq4u5mXEUXpA7A3qAP8YRBXaLzMUg6Z5qTY4lavSb/Ub25lSir7qvSp2r/7SY9es0UNIdZr/M4lwEYNlDIydpdNMM+n+wIQFFI7eSnIb9hV/PZ7d8jv7hcOMUKjGAdy6vFnRvPIPfNEyXjXpIKYWd4e1dtsBipqdXLWdYZj671joxbohSzWfxfuh/ZQpo=
+secure: bhOILCvMmcFqyyxKzyb0tC55JexxL3eSQS8sEmCee8eKQ1UhrILNNT9MnogXEjXJwZ9I8lN1cRx3I7yFrFZeuMvSCX38f1VucwpRpPxHMFk0PzfwsMhhTd3DVXbm7QQoZ5PmMVxE6L5ez9D5tyHLiNCxmUIZ38lJbwh+Dmst3WaPyBCCB/T4KOFQDN/25c97FWH653YzAEw+Q/UMVYRf0xIvlvwDhRb9waZVUk4AwxAoRcllPnz2pf/7hhaUed8MDUy6qJfeNwrOnjr5Oavgzpy9rb5ty8ahCWc+2FwW88lfqBbxpQxSj9qrrAn7hZYKawWEg/IDUfV8Etibc78qS2enCUNOMAPW0NFEk84gwChUHj8p0YyCQ2dwu32VfT6lBAHs7QeXfBz2gQxQTYuXYuPktHlED5rq1RrHumfgwESHJoKL1Lje/fV5h5NKY3ktZcTHA6i2ggJmJqoUCFagbLp8kDw1Lu96JNXn9ygGVCIgl+j+QBsIMrT2VnjF+6+6AEQoQp6/dz5/b9HJ97Aj7aPOI6DCKQfxoFBw3YO3D+Hnc4Aij/Bhhu+lAET0xaf/+qca7uaoOCkwkZAYcWVMkuxo9HE/12lXa5WZHKpJwYzvn7dNmuSKSYVYJeLYbu1n8Ez36CNzfeJ+ajgCVZJT2HNVFBu0AXCzZtnLgMFEv5s=
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/distbrowteco.mobileprovision.enc -d -a -out scripts/profile/distbrowteco.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- chmod a+x ./scripts/add-key.sh
+- ./scripts/add-key.sh
+- chmod a+x ./scripts/update-bundle.sh
+- ./scripts/update-bundle.sh
+- chmod a+x ./scripts/remove-key.sh
+- ./scripts/remove-key.sh
+after_success:
+- ./scripts/sign-and-upload.sh
+after_script:
+- ./scripts/remove-key.sh
