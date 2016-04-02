@@ -5,7 +5,7 @@ xcode_scheme: browteco
 xcode_sdk: iphonesimulator9.3
 script:
 - xctool -workspace browteco.xcworkspace -scheme browteco -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- xctool test -workspace browteco.xcworkspace -scheme browtecoTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool -workspace browteco.xcworkspace -scheme browtecoTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO test
 env:
   global:
   - APP_NAME="browteco"
