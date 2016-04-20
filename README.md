@@ -1,6 +1,7 @@
 # BrowTeco
 
-https://gitlab.com/joaopaulogalvao/browteco/project/badges/branch/build.svg
+<a href="https://gitlab.com/joaopaulogalvao/browteco/commits/master"><img alt="build status" src="https://gitlab.com/joaopaulogalvao/browteco/badges/master/build.svg" /></a>
+
 
 BrowTeco is your buddy who is always there to tell you where to find the best beer.
 
