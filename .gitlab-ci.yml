@@ -4,8 +4,8 @@ stages:
 build_project:
   stage: build
   script:
-    - xcodebuild clean -workspace browteco.xcworkspace -scheme SchemeName | xcpretty
-    - xcodebuild test -workspace browteco.xcworkspace -scheme SchemeName -destination 'platform=iOS Simulator','name=iPhone 6s,OS=9.2' | xcpretty -s
+    - xcodebuild clean -workspace browteco.xcworkspace -scheme browteco | xcpretty
+    - xcodebuild test -workspace browteco.xcworkspace -scheme browteco -destination 'platform=iOS Simulator','name=iPhone 6s,OS=9.2' | xcpretty -s
   tags:
     - ios_9-2
     - xcode_7-2
