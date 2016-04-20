@@ -7,3 +7,5 @@
 //
 
 import Foundation
+
+//This is a test for GitLab
