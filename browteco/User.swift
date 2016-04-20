@@ -9,3 +9,5 @@
 import Foundation
 
 //This is a test for GitLab
+
+//This is another test for GitLab
